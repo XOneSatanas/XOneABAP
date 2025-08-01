@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Casa de las Cortinas - Diseño a Medida</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #111111;
+            color: #E5E7EB; /* Un blanco suave */
+            position: relative;
+            overflow-x: hidden;
+        }
+        .silver-text {
+            color: #C0C0C0; /* Tono plateado */
+        }
+        .card-hover {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(255, 255, 255, 0.1), 0 10px 10px -5px rgba(255, 255, 255, 0.04);
+        }
+        
+        /* --- Estilos para el fondo animado --- */
+        #particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            bottom: -50px;
+            background-color: rgba(192, 192, 192, 0.1);
+            border-radius: 50%;
+            animation: rise 25s infinite linear;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-110vh); opacity: 0; }
+        }
+
+        /* --- Animación para el gráfico de líneas --- */
+        .animated-line {
+            stroke: #C0C0C0;
+            stroke-width: 2;
+            stroke-linecap: round;
+            transform-origin: top;
+            animation: draw-curtain 6s ease-in-out infinite alternate;
+        }
+        .animated-line:nth-child(1) { animation-delay: 0s; }
+        .animated-line:nth-child(2) { animation-delay: 0.2s; }
+        .animated-line:nth-child(3) { animation-delay: 0.4s; }
+        .animated-line:nth-child(4) { animation-delay: 0.6s; }
+        .animated-line:nth-child(5) { animation-delay: 0.8s; }
+        .animated-line:nth-child(6) { animation-delay: 1s; }
+        .animated-line:nth-child(7) { animation-delay: 1.2s; }
+        .animated-line:nth-child(8) { animation-delay: 1.4s; }
+        .animated-line:nth-child(9) { animation-delay: 1.6s; }
+
+        @keyframes draw-curtain {
+            from { transform: scaleY(0); }
+            to { transform: scaleY(1); }
+        }
+
+        /* --- Estilos para el Slider --- */
+        .slider-container {
+            /* Ajusta la altura para dejar espacio al header fijo */
+            height: calc(100vh - 112px); 
+            position: relative;
+            overflow: hidden;
+        }
+        .slider-wrapper {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-black">
+
+    <!-- Contenedor para las partículas del fondo animado -->
+    <div id="particle-container"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-8 bg-black/80 backdrop-blur-sm shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-xl md:text-2xl font-bold tracking-wider silver-text">La Casa de las Cortinas</div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#inicio" class="hover:text-white transition-colors duration-300">Inicio</a>
+                <a href="#productos" class="hover:text-white transition-colors duration-300">Productos</a>
+                <a href="#nosotros" class="hover:text-white transition-colors duration-300">Nosotros</a>
+                <a href="#contacto" class="hover:text-white transition-colors duration-300">Contacto</a>
+            </nav>
+            <button class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Contenido principal de la página -->
+    <main class="relative z-10 pt-28">
+        <!-- Hero Slider Section -->
+        <section id="inicio" class="slider-container">
+            <div class="slider-wrapper">
+                <!-- Slide 1: Automatización -->
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1629177281238-5804a4563a0a?q=80&w=1974&auto=format&fit=crop');">
+                    <div class="relative z-10 text-white container mx-auto">
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-12 max-w-6xl mx-auto">
+                            <div class="flex-shrink-0">
+                                <svg class="w-24 h-24 lg:w-32 lg:h-32 silver-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                                </svg>
+                            </div>
+                            <div class="text-center md:text-left">
+                                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">El futuro está en tus manos.</h1>
+                                <p class="text-lg md:text-xl font-light silver-text max-w-2xl">Controla tus cortinas y toldos con la última tecnología en automatización.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2: Diseño -->
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1615875605825-5eb9bb5c4245?q=80&w=1974&auto=format&fit=crop');">
+                    <div class="relative z-10 text-white container mx-auto">
+                         <div class="flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-12 max-w-6xl mx-auto">
+                            <div class="flex-shrink-0">
+                                <svg class="w-24 h-24 lg:w-32 lg:h-32 silver-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.998 15.998 0 013.388-1.62" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.616-11.885 9.004 9.004 0 00-17.232 0A9.004 9.004 0 0012 21z" />
+                                </svg>
+                            </div>
+                            <div class="text-center md:text-left">
+                                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">Diseño que transforma.</h1>
+                                <p class="text-lg md:text-xl font-light silver-text max-w-2xl">Calidad y elegancia que perduran en cada detalle de nuestros productos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3: Confort -->
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1604259238833-4238a0a4c584?q=80&w=1974&auto=format&fit=crop');">
+                    <div class="relative z-10 text-white container mx-auto">
+                         <div class="flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-12 max-w-6xl mx-auto">
+                            <div class="flex-shrink-0">
+                                <svg class="w-24 h-24 lg:w-32 lg:h-32 silver-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.125 1.125 0 011.591 0L21.75 12M3 13.5l8.954 8.955a1.125 1.125 0 001.591 0L21 13.5m-9-1.5v5.25m-9-5.25h18" />
+                                </svg>
+                            </div>
+                            <div class="text-center md:text-left">
+                                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">Crea tu ambiente ideal.</h1>
+                                <p class="text-lg md:text-xl font-light silver-text max-w-2xl">Soluciones a medida que aportan calidez y estilo a tus espacios.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Navigation Buttons -->
+            <button id="prev-slide" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button id="next-slide" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+            <!-- Pagination Dots -->
+            <div id="pagination-dots" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3"></div>
+        </section>
+
+        <!-- Productos Section -->
+        <section id="productos" class="py-20 md:py-32 bg-[#111111]">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-light">Nuestras Colecciones</h2>
+                <div class="w-20 h-0.5 bg-gray-500 mx-auto mt-4"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16 max-w-6xl mx-auto">
+                    
+                    <!-- Producto: Roller -->
+                    <div class="bg-black p-8 rounded-lg border border-gray-800 card-hover">
+                        <div class="flex justify-center mb-4">
+                             <svg class="w-16 h-16 silver-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 12l8.954-8.955a1.125 1.125 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H18.375a1.125 1.125 0 001.125-1.125V9.75M8.25 21h7.5"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-white">Cortinas Roller</h3>
+                        <p class="silver-text font-light">Minimalismo y control total de la luz. Perfectas para ambientes modernos.</p>
+                    </div>
+
+                    <!-- Producto: Bandas Verticales -->
+                    <div class="bg-black p-8 rounded-lg border border-gray-800 card-hover">
+                        <div class="flex justify-center mb-4">
+                            <svg class="w-16 h-16 silver-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 3v18M10 3v18M14 3v18M18 3v18"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-white">Bandas Verticales</h3>
+                        <p class="silver-text font-light">Elegancia versátil para grandes ventanales y puertas corredizas.</p>
+                    </div>
+
+                    <!-- Producto: Venecianas -->
+                    <div class="bg-black p-8 rounded-lg border border-gray-800 card-hover">
+                       <div class="flex justify-center mb-4">
+                            <svg class="w-16 h-16 silver-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-white">Cortinas Venecianas</h3>
+                        <p class="silver-text font-light">Juego de luces y sombras con un clásico del diseño. En madera o aluminio.</p>
+                    </div>
+
+                    <!-- Producto: Toldos -->
+                    <div class="bg-black p-8 rounded-lg border border-gray-800 card-hover">
+                        <div class="flex justify-center mb-4">
+                            <svg class="w-16 h-16 silver-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15.75h18"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-white">Toldos</h3>
+                        <p class="silver-text font-light">Protección solar y creación de nuevos espacios al aire libre con estilo.</p>
+                    </div>
+
+                    <!-- Producto: Cortinas Confeccionadas -->
+                    <div class="bg-black p-8 rounded-lg border border-gray-800 card-hover">
+                        <div class="flex justify-center mb-4">
+                            <svg class="w-16 h-16 silver-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 4v16M21 4v16M3 4h3a4 4 0 014 4v8a4 4 0 01-4 4H3m18 0h-3a4 4 0 01-4-4V8a4 4 0 014-4h3"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-white">Cortinas Confeccionadas</h3>
+                        <p class="silver-text font-light">La calidez y elegancia de las telas tradicionales, a medida para un acabado perfecto.</p>
+                    </div>
+
+                    <!-- Producto: Automatización -->
+                    <div class="bg-black p-8 rounded-lg border border-gray-800 card-hover">
+                        <div class="flex justify-center mb-4">
+                            <svg class="w-16 h-16 silver-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6.75h.008v.008h-.008v-.008z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-white">Automatización</h3>
+                        <p class="silver-text font-light">Controle sus cortinas y toldos con un solo toque. Confort y tecnología para su hogar.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Us Section -->
+        <section id="nosotros" class="py-20 md:py-32 bg-black">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h2 class="text-3xl md:text-4xl font-light">Nuestra Esencia</h2>
+                    <div class="w-20 h-0.5 bg-gray-500 mx-auto md:mx-0 mt-4 mb-6"></div>
+                    <p class="silver-text leading-relaxed">
+                        Más que fabricantes, somos artesanos. Cada cortina y toldo es el resultado de un proceso meticuloso, combinando tecnología de vanguardia con un cuidado por el detalle que solo las manos expertas pueden ofrecer. Nuestro compromiso es con la calidad y la satisfacción total de nuestros clientes.
+                    </p>
+                </div>
+                <div class="md:w-1/2 flex justify-center items-center p-8">
+                    <svg class="w-full max-w-xs" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <line class="animated-line" x1="10" y1="0" x2="10" y2="100" />
+                        <line class="animated-line" x1="20" y1="0" x2="20" y2="100" />
+                        <line class="animated-line" x1="30" y1="0" x2="30" y2="100" />
+                        <line class="animated-line" x1="40" y1="0" x2="40" y2="100" />
+                        <line class="animated-line" x1="50" y1="0" x2="50" y2="100" />
+                        <line class="animated-line" x1="60" y1="0" x2="60" y2="100" />
+                        <line class="animated-line" x1="70" y1="0" x2="70" y2="100" />
+                        <line class="animated-line" x1="80" y1="0" x2="80" y2="100" />
+                        <line class="animated-line" x1="90" y1="0" x2="90" y2="100" />
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto Section -->
+        <section id="contacto" class="py-20 md:py-32 bg-[#111111]">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-light">Iniciemos su Proyecto</h2>
+                <div class="w-20 h-0.5 bg-gray-500 mx-auto mt-4"></div>
+                <p class="silver-text mt-8 max-w-2xl mx-auto">
+                    Nuestro equipo está listo para brindarle asesoramiento personalizado. Complete el formulario y nos pondremos en contacto a la brevedad para agendar una visita o una cotización.
+                </p>
+                <form class="mt-12 max-w-xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="Nombre" class="bg-gray-900 border border-gray-700 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-gray-500">
+                        <input type="email" placeholder="Email" class="bg-gray-900 border border-gray-700 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-gray-500">
+                    </div>
+                    <div class="mt-4">
+                        <textarea placeholder="Mensaje (ej: tipo de cortina, medidas aproximadas)" class="bg-gray-900 border border-gray-700 rounded-lg p-3 w-full h-32 focus:outline-none focus:ring-2 focus:ring-gray-500"></textarea>
+                    </div>
+                    <div class="mt-6">
+                        <button type="submit" class="bg-white text-black font-bold py-3 px-12 rounded-full hover:bg-gray-200 transition-colors duration-300">Enviar Consulta</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black py-8">
+            <div class="container mx-auto px-4 text-center silver-text font-light">
+                <p>&copy; 2024 La Casa de las Cortinas. Todos los derechos reservados.</p>
+                <p class="text-sm mt-2">Diseño web de alta gama para cortinerías en Argentina.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Slider Logic ---
+            const sliderWrapper = document.querySelector('.slider-wrapper');
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prev-slide');
+            const nextBtn = document.getElementById('next-slide');
+            const dotsContainer = document.getElementById('pagination-dots');
+            
+            let currentIndex = 0;
+            let slideInterval;
+
+            const totalSlides = slides.length;
+
+            if (totalSlides > 0) {
+                // Create pagination dots
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.classList.add('w-3', 'h-3', 'rounded-full', 'transition-colors', 'duration-300');
+                    dot.classList.add(i === 0 ? 'bg-white' : 'bg-white/50', 'hover:bg-white');
+                    dot.addEventListener('click', () => {
+                        goToSlide(i);
+                        resetInterval();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+
+                const dots = dotsContainer.querySelectorAll('button');
+
+                const updateDots = () => {
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('bg-white', i === currentIndex);
+                        dot.classList.toggle('bg-white/50', i !== currentIndex);
+                    });
+                };
+
+                const goToSlide = (index) => {
+                    currentIndex = index;
+                    sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    updateDots();
+                };
+
+                const nextSlide = () => {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    goToSlide(currentIndex);
+                };
+
+                const prevSlide = () => {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    goToSlide(currentIndex);
+                };
+
+                const startInterval = () => {
+                    slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+                };
+
+                const resetInterval = () => {
+                    clearInterval(slideInterval);
+                    startInterval();
+                };
+
+                nextBtn.addEventListener('click', () => {
+                    nextSlide();
+                    resetInterval();
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    prevSlide();
+                    resetInterval();
+                });
+
+                startInterval();
+            }
+
+
+            // --- Script para generar las partículas del fondo ---
+            const particleContainer = document.getElementById('particle-container');
+            const numberOfParticles = 50; // Puedes ajustar este número
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${Math.random() * 15 + 15}s`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+
+                particleContainer.appendChild(particle);
+            }
+        });
+    </script>
+</body>
+</html>
